@@ -1,0 +1,30 @@
+  X79 USEFUL COMMANDS:
+
+1. CREATE DATABASE:
+import sqlite3
+conn = sqlite3.connect('x97db.db')
+conn.close()
+
+2. CREATE TABLE IN THE DATABASE (sqlite3):
+"cursor.execute('''
+    CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY,
+        name TEXT,
+        age INTEGER
+    )
+''')"
+
+3. CHECK ALL TABLES IN THE DATABASE:
+("SELECT name FROM sqlite_master WHERE type='table';")
+
+4. INSERT DATA INSIDE THE TABLE IN THE DATABASE:
+("INSERT INTO users (name, age) VALUES (?, ?)", ('Иван', 30))
+
+5. CHECK TABLE COLUMN NAMES IN THE DATABASE:
+("PRAGMA table_info('users');")
+
+6. DELETE DATA FROM THE TABLE IN THE DATABASE:
+("DELETE FROM Users WHERE id = 5;");
+
+7. ADD ADDITIONAL COLUMN TO THE TABLE IN THE DATABASE:
+("ALTER TABLE users ADD COLUMN email TEXT;");
