@@ -11,10 +11,10 @@
    <body>
       <header>
          <div id = "appheader">
-            <img src = "static/img/appimg.png" id = "appimg" class = "headerElements" alt = "SKILL UP IMG" onclick = "goHome()">
+            <img src = "static/img/appimg.png" id = "appimg" class = "headerElements" alt = "SKILL UP IMG" onclick = "goToLogin()">
             <h1 id = "appname" class = "headerElements" onclick = "goHome()">{% print (base[0][2]) %}</h1>
             <img src = "static/img/htklogo.png" id = "htklogo" class = "headerElements" alt = "HTK logo" onclick = "window.open('https://hyundaiplant.kz/ru/', '_blank')">  
-            <h1 id = "appuser" class = "headerElements">{% print(base[4][2]) %}</h1>
+            <h1 id = "appuser" class = "headerElements">{% print(cur_username) %}</h1>
             <img src = "data:image/png;base64,{% print(base[5][2]) %}" id = "userlogo" class = "headerElements" alt = "User logo" onclick = "displayUserImg(this);">
          </div>
       </header>

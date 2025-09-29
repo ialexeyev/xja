@@ -40,3 +40,21 @@ function displayUserImg(img) {
 function goHome() {
   window.location.href = "/";
 }
+
+/* Return to login page */
+function goToLogin() {
+  $.ajax({
+    data : {},
+    type : 'POST',
+    url : '/logout'
+    })
+    .done(function(data) {
+      if(data == 'OK') {
+        window.location.href = "/login";
+        return;
+      }
+      else {
+        document.getElementById('appimg').textContent = ERR_MSG_TXT_SERV_CONN;
+    }
+  });
+}

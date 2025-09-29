@@ -40,11 +40,21 @@ function signIn(id, passw, err) {
     $.ajax({
       data : {userid : id.value, userpass : passw.value },
       type : 'POST',
-      url : '/signinprocess'
+      url : '/loginprocess'
       })
       .done(function(data) {
         if(data == 'OK') {
-            return;
+          err.style.color = "#003a84"
+          err.textContent = SUCCESS_TXT_MAIN;
+          setTimeout(() => {
+            document.getElementById('signInFormBlock').style.transform = "rotateX(90deg)";
+           }, "500");
+          setTimeout(() => {
+            document.body.style.opacity = "0"; // enter to application workspace
+           }, "1500");
+          setTimeout(() => {
+            window.location.href = "/";
+           }, "2000");
           }
         else if(data == 'ID NOK'){
           err.style.color = "red";
@@ -97,7 +107,7 @@ function signUp(firstname,
               document.body.style.opacity = "0";
              }, "1500");
              setTimeout(() => {
-                window.location.href = "/";
+                window.location.href = "/login";
              }, "2000");
            }
            else if(data == 'NOK'){

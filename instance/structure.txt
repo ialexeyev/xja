@@ -1,13 +1,43 @@
-X79 database structure:
+XJA database structure:
 
-1. Main database (general application elements - headers, names, main icons):
-    'base' table([id(int)], [bname(text)], bdata(text))).
+DATABASES:
+1. users.db: app users database connected with LoginManager;
+2. prismdb.db: app main database with general data and services;
 
-2. Serivices: database for requred page elements: loacal headers, buttons, links:
-    'services' table([key(int)], [spagename(text)] [sname(text)], [sdata(text)]).
+CONTENT:
+    1. users.db:
+        'user'  table
+          [(0, 'id', 'INTEGER', 0, None, 1), 
+            (1, 'uid', 'TEXT', 0, None, 0), 
+            (2, 'ufname', 'TEXT', 0, None, 0), 
+            (3, 'ulname', 'TEXT', 0, None, 0), 
+            (4, 'umail', 'TEXT', 0, None, 0), 
+            (5, 'udepartment', 'TEXT', 0, None, 0), 
+            (6, 'usupervisor', 'TEXT', 0, None, 0), 
+            (7, 'uposition', 'TEXT', 0, None, 0), 
+            (8, 'uaccess', 'TEXT', 0, None, 0), 
+            (9, 'upass', 'TEXT', 0, None, 0)]
+        class User(userDB.Model, UserMixin):
+            id = userDB.Column(userDB.Integer, primary_key=True)
+            uid = userDB.Column(userDB.String(30), unique=True)
+            ufname = userDB.Column(userDB.String(25))
+            ulname = userDB.Column(userDB.String(30))
+            umail = userDB.Column(userDB.String(40), unique=True)
+            udepartment = userDB.Column(userDB.String(40))
+            usupervisor = userDB.Column(userDB.String(40))
+            uposition = userDB.Column(userDB.String(40))
+            uaccess = userDB.Column(userDB.String(15))
+            upass = userDB.Column(userDB.String(20))
+          
+    2. prismdb.db
+        2.1. Main table (general application elements - headers, names,                main icons):
+                'base' table([id(int)], [bname(text)], bdata(text))).
 
-3. Users: database for application primary users:
-    'users'  table[0 – ‘INTEGER’ – id(PRIMARY KEY)], 
+        2.2. Serivices: database for requred page elements: local                     headers, buttons, links:
+                'services' table([key(int)], [spagename(text)]                             [sname(text)], [sdata(text)]).
+
+        2.3. Users: database for application primary users:
+                'users'  table[0 – ‘INTEGER’ – id(PRIMARY KEY)], 
                   [1 – ‘TEXT’ – uid],               
                   [2 – ‘TEXT’ – ufname],
                   [3 – ‘TEXT’ – ulname],
@@ -19,9 +49,9 @@ X79 database structure:
                   [9 – ‘TEXT’ – upassword],
                   [10 – ‘TEXT’ – uphoto].
 
-4. Temporary users: database for singing up people:
-    'tempusers' table[0 – ‘INTEGER’ – id(PRIMARY KEY)], 
-                     [1 – ‘TEXT’ – tuid],                                             
+        2.4. Temporary users: database for singing up people:
+            'tempusers' table[0 – ‘INTEGER’ – id(PRIMARY KEY)], 
+                     [1 – ‘TEXT’ – tuid],                                
                      [2 – ‘TEXT’ – tufname], 
                      [3 – ‘TEXT’ – tulname],
                      [4 – ‘TEXT’ – tumail], 
@@ -31,12 +61,3 @@ X79 database structure:
                      [8 – ‘TEXT’ – tupassword],
                      [10 – ‘TEXT’ – tuphoto], 
                      [11 - 'TEXT' - tustatus (new, approved, rejected)].
-
-5. Dynamic database for checking online users [CONFIDENTIAL S - only for PRIVAC]:
-    'dyn_attendance' table[0 - 'INTEGER' - id(PRIMARY KEY)],
-                          [1 - 'TEXT' - aid],
-                          [2 - 'TEXT' - afname],
-                          [3 - 'TEXT' - alname],
-                          [4 - 'TEXT' - aip],
-                          [5 - 'TEXT' - acurrentpage],
-                          [6 - 'TEXT' - ahostdata]
