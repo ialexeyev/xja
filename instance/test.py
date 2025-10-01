@@ -13,14 +13,14 @@ prism_cursor = conn.cursor()
 prism_cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
 
 #prism_cursor.execute("DELETE FROM user WHERE id = 1;")
-
+#prism_cursor.execute("INSERT INTO services (spagename, sname, sdata) VALUES (?, ?, ?)", ('mainpage', 'pageTitle', 'SKILL UP: Home page'))
 #prism_cursor.execute("DROP TABLE dyn_attendance;")
 #prism_cursor.execute("DELETE FROM dyn_attendance;")
 #prism_cursor.execute("ALTER TABLE dyn_attendance ADD COLUMN ahostname TEXT;")
 #prism_cursor.execute("DELETE FROM dyn_attendance WHERE id = 2;")
 #prism_cursor.execute("PRAGMA table_info('user');")
 #prism_cursor.execute("SELECT * FROM dyn_attendance")
-#prism_cursor.execute('SELECT * FROM users')
+prism_cursor.execute('SELECT * FROM services')
 #prism_cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
 #prism_cursor.execute("""CREATE TABLE dyn_attendance (
 #   id INTEGER PRIMARY KEY,
@@ -36,10 +36,10 @@ prism_cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
 
 #conn.commit()
 
-#data = prism_cursor.fetchall()
+data = prism_cursor.fetchall()
 
 #prism_cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
-data = prism_cursor.fetchall()
+#data = prism_cursor.fetchall()
 conn.close()
 
 print(data)

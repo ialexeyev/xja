@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
+from datetime import timedelta
 
 userDB = SQLAlchemy()
 USERDB_NAME = "users.db"
@@ -9,6 +10,7 @@ USERDB_NAME = "users.db"
 def create_app():
   app = Flask(__name__, static_folder='static', static_url_path='/static')
   app.config['SECRET_KEY'] = 'prismgt40xja'
+  app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=2)
   app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{USERDB_NAME}'
   userDB.init_app(app)
 

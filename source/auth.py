@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, session
 from .models import User
 from werkzeug.security import check_password_hash
 from flask_login import login_user, login_required, logout_user
@@ -19,6 +19,7 @@ def loginprocess():
     if user:
       if check_password_hash(user.upass, userPASS):
         login_user(user, remember=True)
+        session.permanent = True
         result = "OK"
       else:
         result = "PASS NOK"
