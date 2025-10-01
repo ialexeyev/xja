@@ -41,20 +41,39 @@ function goHome() {
   window.location.href = "/";
 }
 
-/* Return to login page */
+/* Return to login page (logout button) */
 function goToLogin() {
-  $.ajax({
-    data : {},
-    type : 'POST',
-    url : '/logout'
-    })
-    .done(function(data) {
-      if(data == 'OK') {
-        window.location.href = "/login";
-        return;
+  window.location.href = "/login";
+}
+
+
+/* --- LOGIN/LOGOUT USER FUNCTIONS --- */
+
+/* LogOUT for every page after user exit*/
+window.addEventListener('beforeunload', function() {
+    userLogout();
+});
+
+/* Log out user every 3 minutes */
+setInterval(() => {
+  console.log('logout');
+    userLogout();
+    window.location.href = "/login";
+}, 180000); // Every 180 seconds
+
+/* User logout general function */
+function userLogout() {
+    $.ajax({
+      data : {},
+      type : 'POST',
+      url : '/logout'
+      })
+      .done(function(data) {
+        if(data == 'OK') {
+          return;
+        }
+        else {
+          document.getElementById('appimg').textContent = "LOGIN SERVER ERROR";
       }
-      else {
-        document.getElementById('appimg').textContent = ERR_MSG_TXT_SERV_CONN;
-    }
-  });
+    });
 }

@@ -6,5 +6,6 @@ body {
 }
 
 #mainpageBlock {
-  background: gray;
+  background-image: url("../img/homewallpaper.jpg");
+  background-size: cover;
 }
