@@ -5,3 +5,4 @@ Flask
 Gunicorn
 sqlalchemy
 flask-login
+flask_sqlalchemy
