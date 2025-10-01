@@ -43,6 +43,7 @@ function goHome() {
 
 /* Return to login page (logout button) */
 function goToLogin() {
+  userLogout();
   window.location.href = "/login";
 }
 
@@ -50,9 +51,11 @@ function goToLogin() {
 /* --- LOGIN/LOGOUT USER FUNCTIONS --- */
 
 /* LogOUT for every page after user exit*/
+/*
 window.addEventListener('beforeunload', function() {
     userLogout();
 });
+/*
 
 /* Log out user every 3 minutes */
 setInterval(() => {
